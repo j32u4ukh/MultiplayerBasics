@@ -10,14 +10,18 @@ public class MyNetworkManager : NetworkManager
     {
         base.OnServerAddPlayer(conn);
 
-        Debug.Log($"There are now {numPlayers} players!");
+        MyNetworkPlayer player = conn.identity.GetComponent<MyNetworkPlayer>();
+        player.setDisplayName($"Player {numPlayers}");
+        Color color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
+        player.setDisplayColor(color);
     }
 
+    /// <summary>
+    /// 用 NetworkClient.connection 取代原本傳入參數的 NetworkConnection conn
+    /// </summary>
     public override void OnClientConnect()
     {
         base.OnClientConnect();
-
-        Debug.Log("I connected to a server!");
     }
 }
 
