@@ -52,6 +52,7 @@ public class MyNetworkPlayer : NetworkBehaviour
         }
     }
 
+    [Server]
     private bool isNameValid(string new_name)
     {
         return (2 < new_name.Length) && (new_name.Length < 20);
